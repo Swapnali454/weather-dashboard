@@ -226,7 +226,7 @@ This project is open source and available for educational purposes.
 
 ## 👤 Author
 
-[Your Name]
+Swapnali Anarase
 
 ## 🙏 Acknowledgments
 

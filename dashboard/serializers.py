@@ -35,7 +35,7 @@ class WeatherStatsSerializer(serializers.Serializer):
     """
     Serializer for weather statistics/analytics
     """
-    location_name = serializers.CharField()
+    name = serializers.CharField()  # Changed from location_name to name
     avg_temperature = serializers.FloatField()
     max_temperature = serializers.FloatField()
     min_temperature = serializers.FloatField()

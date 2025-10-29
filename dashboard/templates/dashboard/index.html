@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-card h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card p {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        
+        .api-links {
+            margin-top: 20px;
+        }
+        
+        .api-links a {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .api-links a:hover {
+            background: #764ba2;
+        }
+        
+        .feature {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+        }
+        
+        .feature h3 {
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌤️ Weather Dashboard API</h1>
+        
+        <div class="card">
+            <h2>Welcome to Weather Dashboard</h2>
+            <p>A Django REST API application with PostgreSQL integration and real-time weather data from OpenWeatherMap.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Locations</h3>
+                    <p id="total-locations">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Weather Records</h3>
+                    <p id="total-records">-</p>
+                </div>
+                <div class="stat-card">
+                    <h3>API Endpoints</h3>
+                    <p>6+</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>✨ Features Implemented</h2>
+            
+            <div class="feature">
+                <h3>1. CRUD Operations</h3>
+                <p>Full Create, Read, Update, Delete functionality for location management via REST APIs</p>
+            </div>
+            
+            <div class="feature">
+                <h3>2. Third-Party API Integration</h3>
+                <p>Real-time weather data fetching from OpenWeatherMap API with automatic data storage</p>
+            </div>
+            
+            <div class="feature">
+                <h3>3. Data Visualization & Reporting</h3>
+                <p>Weather statistics endpoint providing aggregated analytics (avg, min, max temperatures, humidity)</p>
+            </div>
+            
+            <div class="feature">
+                <h3>4. PostgreSQL Database</h3>
+                <p>Using Supabase PostgreSQL for production-ready data storage</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🔗 API Endpoints</h2>
+            <div class="api-links">
+                <a href="/api/locations/" target="_blank">📍 Locations API</a>
+                <a href="/api/weather-data/" target="_blank">🌡️ Weather Data API</a>
+                <a href="/api/weather-data/statistics/" target="_blank">📊 Statistics API</a>
+                <a href="/admin/" target="_blank">⚙️ Admin Panel</a>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📖 How to Use</h2>
+            <ol style="line-height: 2;">
+                <li><strong>Add Location:</strong> POST to /api/locations/ with city details</li>
+                <li><strong>Get Weather:</strong> GET /api/locations/{id}/current_weather/</li>
+                <li><strong>Search City:</strong> GET /api/locations/search_city/?city=CityName</li>
+                <li><strong>View Statistics:</strong> GET /api/weather-data/statistics/</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script>
+        // Fetch statistics
+        fetch('/api/locations/')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('total-locations').textContent = data.count || data.length || 0;
+            })
+            .catch(() => {
+                document.getElementById('total-locations').textContent = '0';
+            });
+            
+        fetch('/api/weather-data/')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('total-records').textContent = data.count || data.length || 0;
+            })
+            .catch(() => {
+                document.getElementById('total-records').textContent = '0';
+            });
+    </script>
+</body>
+</html>

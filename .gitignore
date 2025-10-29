@@ -1,0 +1,55 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Environment variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+```
+
+5. Save the file (Ctrl + S)
+
+---
+
+## **Step 12: Create requirements.txt**
+
+This lists all the packages our project needs.
+
+### In VS Code:
+
+1. Create a new file called `requirements.txt`
+2. Paste this content:
+```
+Django==4.2.7
+djangorestframework==3.14.0
+psycopg2-binary==2.9.9
+python-decouple==3.8
+requests==2.31.0
+django-cors-headers==4.3.1
+dj-database-url==2.1.0
+gunicorn==21.2.0
+whitenoise==6.6.0
